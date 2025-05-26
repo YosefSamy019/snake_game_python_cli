@@ -1,12 +1,11 @@
 import os
 import time
 
-from colorama import Fore
+from colorama import Fore, Back
 
 from buttons import BtnControl
 from utilities import Position
 
-EMPTY_CELL = Fore.LIGHTWHITE_EX + '-'
 
 
 class PeriodicTask:
@@ -15,6 +14,8 @@ class PeriodicTask:
         self.time_period_ms = time_period_ms
 
         self.last_call_time_ns = None
+
+
 
     def check(self):
         if self.last_call_time_ns is None or time.time_ns() > self.last_call_time_ns + self.time_period_ms * (10 ** 6):
@@ -28,6 +29,9 @@ class GameEngine:
         assert type(window_width) is int and type(window_width) is int
         assert type(fps) is int
 
+        #empty cell
+        self.empty_cell = Back.RESET + Fore.LIGHTWHITE_EX + '-'
+
         self.window_width = window_width
         self.window_height = window_height
         self.fps = fps
@@ -37,7 +41,7 @@ class GameEngine:
         for i in range(window_height):
             self.window.append([])
             for j in range(window_width):
-                self.window[-1].append(EMPTY_CELL)
+                self.window[-1].append(self.empty_cell)
 
         # fps variables
         self.last_frame_time = None
@@ -51,13 +55,16 @@ class GameEngine:
         # heading text
         self.heading_text_callback = None
 
+
+
+
     def window_to_str(self):
         window_str = ""
 
         for i in range(self.window_height):
             for j in range(self.window_width):
                 window_str += str(self.window[i][j])
-                window_str += ' '
+                window_str += Back.RESET + ' '
 
             window_str += '\n'
 
@@ -105,7 +112,7 @@ class GameEngine:
     def clear_window(self):
         for i in range(self.window_height):
             for j in range(self.window_width):
-                self.window[i][j] = EMPTY_CELL
+                self.window[i][j] = self.empty_cell
 
     def plot_symbol(self, position: Position, symbol):
         assert type(position) is Position and type(symbol) is str
@@ -119,14 +126,14 @@ class GameEngine:
         assert position.x < self.window_width
         assert position.y < self.window_height
 
-        self.window[position.y][position.x] = EMPTY_CELL
+        self.window[position.y][position.x] = self.empty_cell
 
     def get_all_empty_positions(self):
         empty_pos = []
 
         for i in range(self.window_height):
             for j in range(self.window_width):
-                if self.window[i][j] == EMPTY_CELL:
+                if self.window[i][j] == self.empty_cell:
                     empty_pos.append(
                         Position(j, i)
                     )
@@ -135,3 +142,6 @@ class GameEngine:
 
     def set_heading_text_callback(self, callback):
         self.heading_text_callback = callback
+
+    def change_empty_cell(self, digit):
+        self.empty_cell = Back.RESET + Fore.LIGHTWHITE_EX + str(digit)[0]

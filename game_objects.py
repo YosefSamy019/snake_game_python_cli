@@ -1,24 +1,41 @@
-from colorama import Fore
+import time
+from abc import ABC
+
+from colorama import Fore, Back
 
 from utilities import *
 
 
-class Apple:
+class GameObject(ABC):
+    def __init__(self):
+        pass
+
+
+class Apple(GameObject):
     def __init__(self, position):
+        super().__init__()
         assert type(position) is Position
         self.position = position
 
+        self.create_time_ns = time.time_ns()
+
     def __str__(self):
-        return Fore.GREEN + "\u047C"
+        life_time_ns = time.time_ns() - self.create_time_ns
+        create_time_s = life_time_ns // (10 ** 9)
+
+        cur_color = [Fore.GREEN, Fore.YELLOW][create_time_s % 2]
+
+        return Back.MAGENTA + cur_color + "\u047C"
 
 
-class Snake:
+class Snake(GameObject):
     def __init__(self, position_list):
+        super().__init__()
         assert type(position_list) is list and type(position_list[0]) is Position
         self.position_list = position_list
 
     def __str__(self):
-        return Fore.YELLOW + "\u25A0"
+        return Back.RESET + Fore.YELLOW + "\u25A0"
 
     def move_up(self, screen_width, screen_height):
         tail = self.position_list.pop(0)
@@ -61,10 +78,11 @@ class Snake:
         return tail
 
 
-class Barrier:
+class Barrier(GameObject):
     def __init__(self, position):
+        super().__init__()
         assert type(position) is Position
         self.position = position
 
     def __str__(self):
-        return Fore.RED + "X"
+        return Back.RESET + Fore.RED + "X"
