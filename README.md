@@ -14,6 +14,11 @@ This project is a simple yet interactive Snake game built to run in the terminal
 - **Periodic Tasks & Controls**: Uses event-driven logic to update gameplay mechanics.
 - **Object-Oriented Design**: The game structure follows OOP principles for modularity.
 
+## ScreenShots
+![Image Description](images/img (1).png)
+![Image Description](images/img (2).png)
+![Image Description](images/img (3).png)
+
 ## Control
 1. Navigate the menu using:
    - **Arrow Keys** (`Up`/`Down`): Move between menu options.
