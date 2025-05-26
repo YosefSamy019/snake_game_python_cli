@@ -15,9 +15,9 @@ This project is a simple yet interactive Snake game built to run in the terminal
 - **Object-Oriented Design**: The game structure follows OOP principles for modularity.
 
 ## ScreenShots
-![Image Description](images/img (1).png)
-![Image Description](images/img (2).png)
-![Image Description](images/img (3).png)
+![Image Description](images/img_1.png)
+![Image Description](images/img_2.png)
+![Image Description](images/img_3.png)
 
 ## Control
 1. Navigate the menu using:
