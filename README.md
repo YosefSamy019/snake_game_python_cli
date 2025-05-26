@@ -14,10 +14,7 @@ This project is a simple yet interactive Snake game built to run in the terminal
 - **Periodic Tasks & Controls**: Uses event-driven logic to update gameplay mechanics.
 - **Object-Oriented Design**: The game structure follows OOP principles for modularity.
 
-## ScreenShots
-![Image Description](images/img_1.png)
-![Image Description](images/img_2.png)
-![Image Description](images/img_3.png)
+
 
 ## Control
 1. Navigate the menu using:
@@ -32,6 +29,11 @@ This project is a simple yet interactive Snake game built to run in the terminal
    - `S` → Move Down
    - `A` → Move Left
    - `D` → Move Right
+
+## ScreenShots
+![Image Description](images/img_1.png)
+![Image Description](images/img_2.png)
+![Image Description](images/img_3.png)
 
 ## Code Structure
 - `engine.py`: Core game engine handling rendering and task execution.
